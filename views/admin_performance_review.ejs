@@ -1,0 +1,86 @@
+
+
+<div class="w-75 mx-auto mt-5">
+    <br />
+
+    <div class="row">
+        <div class="col-6">
+            <h2>Employee Perfomance List</h2>
+        </div>
+
+        <div class="col-6 d-flex justify-content-end">
+            <a href="/admin/add-pr" type="button" class="btn btn-success align-self-center" style="margin: 0.5rem;">+Add Employee Performance</a>
+        </div>
+    </div>
+   
+    <% if(performaces.length > 0) {%>
+    <div class="mt-3 mb-3">
+        
+        <table class="table table-bordered table-striped" id="employeeTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Employee Name</th>
+                    <th  colspan="5" title="center"> Perfomance Review </th>
+                    <th scope="col">Reviewer</th>
+                    <th scope="col" class="text-end">Action</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th scope="col">Job Knowledge</th>
+                    <th scope="col">Quality of  Work</th>
+                    <th scope="col">Productivity</th>
+                    <th scope="col">Communication</th>
+                    <th scope="col">Problem Solving</th>
+                    <th></th>
+                    <th>Assign Employee/Update</th>
+                </tr>
+            </thead>
+            <% for(let perfomance of performaces) {%>
+                <form action="/admin/updatePerformance/<%=perfomance._id%>" method="POST">
+            <tbody id="myTable" style="color: white;">
+                
+                <tr>
+                    <td><%= perfomance.employee.employeeID%></td>
+                    <td><%= perfomance.employee.name%></td>
+                    <td contenteditable="true" class="jkT"  oninput="updateHiddenInput(this, 'jk_<%=perfomance._id%>')"><%=perfomance.jobKnowledge%></td>
+                    <td contenteditable="true" class="qwT"  oninput="updateHiddenInput(this, 'qw_<%=perfomance._id%>')"><%=perfomance.qualityOfWork%></td>
+                    <td contenteditable="true" class="prodT"  oninput="updateHiddenInput(this, 'prod_<%=perfomance._id%>')"><%=perfomance.productivity%></td>
+                    <td contenteditable="true" class="comT"  oninput="updateHiddenInput(this, 'com_<%=perfomance._id%>')"><%=perfomance.communication%></td>
+                    <td contenteditable="true" class="psT"  oninput="updateHiddenInput(this, 'ps_<%=perfomance._id%>')"><%=perfomance.problemSolving%></td>
+                    <td><%= perfomance.reviewer.name%></td>
+                    <input type="hidden" name="jk_<%=perfomance._id%>" value="<%=perfomance.jobKnowledge%>" class="jkI"  />
+                    <input type="hidden" name="qw_<%=perfomance._id%>" value="<%=perfomance.qualityOfWork%>" class="qwI"  />
+                    <input type="hidden" name="prod_<%=perfomance._id%>" value="<%=perfomance.productivity%>" class="prodI"  />
+                    <input type="hidden" name="com_<%=perfomance._id%>" value="<%=perfomance.communication%>" class="comI"  />
+                    <input type="hidden" name="ps_<%=perfomance._id%>" value="<%=perfomance.problemSolving%>" class="psI"  />
+                   
+                    <td style="display: flex; justify-content: space-around; align-items: center">
+                        <select class="form-select ml-2 mr-2 form-control aria-label="Default select example" name="employee" id="select_employee" required>
+                            <option selected disabled>Select Employee</option>
+                            <%for(let employee of employees){%>
+                                <option value="<%=employee._id%>">
+                                    <%= employee.name %>
+                                </option>
+                                <%}%>
+                        </select>
+                        <input type="submit" class="btn btn-warning btn-small" value="Update"/>
+                    </td>
+                    </td>
+                </tr>
+           
+            </tbody>
+        </form>
+            <%}%>
+        </table>
+  
+    </div>
+    <!-- <%}else{%> -->
+    <div class="w-75 mx-auto mt-5">
+        <h2>No Records Found</h2>
+    </div>
+    <!-- <%}%> -->
+</div>
+
+

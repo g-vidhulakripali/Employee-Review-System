@@ -35,7 +35,7 @@ module.exports.createEmployee = async function (req, res) {
         if (!empID) {
           await User.create({
             employeeID: req.body.employeeID,
-            name: req.body.email,
+            name: req.body.name,
             password: req.body.password,
             email: req.body.email,
             isAdmin: req.body.isAdmin,
@@ -48,7 +48,7 @@ module.exports.createEmployee = async function (req, res) {
         }
       } catch (err) {
         console.log("Error in creating Employee", err);
-        return;
+        return res.redirect("back");
       }
     } else {
       req.flash("error", "Account Already Exists");

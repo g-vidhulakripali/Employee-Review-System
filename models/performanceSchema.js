@@ -28,10 +28,13 @@ const PerformaceSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    feedback: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
 
-const Performance = mongoose.model("Student", PerformaceSchema);
+const Performance = mongoose.model("Perfomance", PerformaceSchema);
 
 module.exports = Performance;

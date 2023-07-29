@@ -2,6 +2,7 @@
   text-align: center;
   font-size: 18px;
   max-width: 80%;
-  position: absolute;
-  left: 10%;
+  max-width: 80%;
+  height: 100vh;
+  padding-left: 20%;
   margin-top: 2%; }

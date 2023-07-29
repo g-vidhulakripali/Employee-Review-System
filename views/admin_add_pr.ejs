@@ -1,0 +1,44 @@
+<div class="container">
+    <form class="w-60 mx-auto mt-4" action="/admin/create-pr/<%=locals.user._id%>" method="POST" id="pr-form">
+        <%- include('partials/_back_home'); %>
+            <h3 style="margin-bottom: 50px; color: black;">Perfomance Review</h3>
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <select class="form-select" aria-label="Default select example" name="employee" id="employee" required>
+                    <option selected disabled>Select Employee</option>
+
+                    <%for(let employee of employees){%>
+                        <option value="<%=employee._id%>">
+                            <%= employee.name %>
+                        </option>
+                        <%}%>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="rating">Job Knowledge </label>
+                <input type="range" name="jk" id="rating" name="rating" min="1" max="5" value="3">
+            </div>
+            <div class="mb-3">
+                <label for="rating">Quality of Work </label>
+                <input type="range" name="qw" id="rating" name="rating" min="1" max="5" value="3">
+            </div>
+            <div class="mb-3">
+                <label for="rating">Productivity</label>
+                <input type="range" name="prod" id="rating" name="rating" min="1" max="5" value="3">
+            </div>
+            <div class="mb-3">
+                <label for="rating">Communication</label>
+                <input type="range" name="com" id="rating" name="rating" min="1" max="5" value="3">
+            </div>
+            <div class="mb-3">
+                <label for="rating">Problem Solving</label>
+                <input type="range" name="ps" id="rating" name="rating" min="1" max="5" value="3">
+            </div>
+
+            <button class="btn btn-success align-self-center">
+                Submit
+            </button>
+    </form>
+</div>
