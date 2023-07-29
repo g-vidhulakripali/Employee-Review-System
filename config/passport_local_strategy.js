@@ -15,9 +15,8 @@ passport.use(
         .then((user) => {
           // If user is not found or password does not match, return false.
           if (!user || user.password != password) {
-            req.flash("error", "Invalid Username/Password");
             console.log("Invalid Username/Password");
-            return done(null, false);
+            return done(null, false, { message: "Invalid Username/Password" });
           }
 
           // If user is found and password matches, return the user.
@@ -68,8 +67,15 @@ passport.checkAuthentication = function (req, res, next) {
 // Middleware to set authenticated user in res.locals.user for use in views.
 passport.setAuthenticatedUser = function (req, res, next) {
   if (req.isAuthenticated()) {
-    console.log(req.user);
+    // console.log(req.user);
     res.locals.user = req.user;
+
+    if (req.user.isAdmin) {
+      res.locals.isAdmin = true;
+      console.log(res.locals.isAdmin);
+    } else {
+      res.locals.isAdmin = false;
+    }
   }
   next();
 };

@@ -49,8 +49,8 @@ app.set("views", "./views");
 // Configuring session middleware to store session data in MongoDB.
 app.use(
   session({
-    name: "placement-cell",
-    secret: "StudentInfo",
+    name: "employee-review",
+    secret: "EmployeePerformance",
     saveUninitialized: false,
     resave: false,
     cookie: {

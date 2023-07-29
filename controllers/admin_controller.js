@@ -107,7 +107,7 @@ module.exports.updateToUser = async function (req, res) {
   const id = req.params.id;
   try {
     const emp = await User.updateOne({ _id: id }, { isAdmin: false });
-    console.log(emp);
+    // console.log(emp);
     return res.redirect("back");
   } catch (err) {
     req.flash("error", "Unable to make the admin as User");
@@ -117,8 +117,8 @@ module.exports.updateToUser = async function (req, res) {
 };
 
 module.exports.deleteUser = async function (req, res) {
-  console.log(req.params.id);
-  console.log(req.body);
+  //   console.log(req.params.id);
+  //   console.log(req.body);
   const id = req.params.id;
   try {
     await User.findByIdAndDelete(id);

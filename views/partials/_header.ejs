@@ -12,7 +12,13 @@
             <ul>
                 <% if (locals.user){ %>
                 <li>
-                   <bold>Hi!</bold> <a href="/"><%= user.name %></a>
+                   <bold>Hi!</bold> 
+                   <%if(locals.user.isAdmin){%>
+                    <a href="/admin"><%= user.name %> - ADMIN DASHBOARD</a>
+                 <%  }else{%>
+                    <a href="/"><%= user.name %></a>
+                  <% }%>
+                   
                 </li>
                 <li>
                     <a href="/company/home">Performance Review</a>

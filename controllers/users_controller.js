@@ -12,12 +12,14 @@ module.exports.signUp = function (req, res) {
 
 // Controller function to render the sign-in form page
 module.exports.signIn = function (req, res) {
+  // console.log(req.body);
+  console.log(req.body);
   if (req.isAuthenticated()) {
-    console.log(req.body);
     return res.redirect("/");
   }
   return res.render("user_sign_in", {
     title: "Employee Review System  | Sign In",
+    message: req.flash("error")[0],
   });
 };
 

@@ -2,6 +2,11 @@
 <div
 			class="w-50 mx-auto mt-5" id="sign-in-container"
 		>
+		<% if (message) { %>
+			<div class="flash-message">
+			  <%= message %>
+			</div>
+		  <% } %>
 			<div class="mx-auto mt-3 mb-3" style="width: 100px">
 				<h4>Sign In</h4>
 			</div>
