@@ -1,0 +1,70 @@
+
+
+<div class="w-75 mx-auto mt-5">
+    <br />
+
+    <div class="row">
+        <div class="col-6">
+            <h2>Employee List</h2>
+        </div>
+
+        <div class="col-6 d-flex justify-content-end">
+            <a href="/admin/add-employee" type="button" class="btn btn-success align-self-center" style="margin: 0.5rem;">+ Add Employee</a>
+            <!-- <a href="/download" type="button" class="btn btn-info align-self-center">Download Report</a> -->
+        </div>
+    </div>
+   
+    <% if(employees.length > 0) {%>
+    <div class="mt-3 mb-3">
+        
+        <table class="table table-bordered table-striped" id="employeeTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Admin</th>
+                    <th scope="col" class="text-end">Action</th>
+                </tr>
+            </thead>
+            <% for(let employee of employees) {%>
+                <form action="/admin/update/<%=employee._id%>" method="POST">
+            <tbody id="myTable" style="color: white;">
+                
+                <tr>
+                    <td contenteditable="true" class="empIDT"  oninput="updateHiddenInput(this, 'employeeID_<%=employee._id%>')"><%= employee.employeeID %></td>
+                <td contenteditable="true" class="nameT" oninput="updateHiddenInput(this, 'name_<%=employee._id%>')"><%= employee.name %></td>
+                <td contenteditable="true" class="emailT" oninput="updateHiddenInput(this, 'email_<%=employee._id%>')"><%= employee.email %></td>
+                <!-- Hidden inputs to store the edited values -->
+                <input type="hidden" name="employeeID_<%=employee._id%>" value="<%= employee.employeeID %>" class="empIDI"  />
+                <input type="hidden" name="name_<%=employee._id%>" value="<%= employee.name %>" class="nameI" />
+                <input type="hidden" name="email_<%=employee._id%>"value="<%= employee.email %>" class="emailI" />
+                        <%if(employee.isAdmin){ %>
+                           <td> Admin 
+                            <a href="/admin/update-to-user/<%=employee._id%>" type="button" class="btn btn-info btn-small">Make User</a>
+                           </td>
+                       <% }else{ %>
+                        <td> User  
+                            <a href="/admin/update-to-admin/<%=employee._id%>" type="button" class="btn btn-info btn-small">Make Admin</a> </td>
+                        <%}%>
+                   
+                    <td style="display: flex; justify-content: space-around; align-items: center">
+                        <input type="submit" class="btn btn-warning btn-small" value="Update"/>
+                        <a href="/admin/delete/<%=employee._id%>" type="button" class="btn btn-danger btn-small">Delete</a></td>
+                    </td>
+                </tr>
+           
+            </tbody>
+        </form>
+            <%}%>
+        </table>
+  
+    </div>
+    <%}else{%>
+    <div class="w-75 mx-auto mt-5">
+        <h2>No Records Found</h2>
+    </div>
+    <%}%>
+</div>
+
+

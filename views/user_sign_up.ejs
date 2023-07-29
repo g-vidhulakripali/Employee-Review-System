@@ -1,0 +1,39 @@
+
+<div id="sign-up-container" class="w-50 mx-auto mt-5"  >
+    <%- include('partials/_back_home'); %>
+  <div class="mx-auto mt-3 mb-4" style="width: 100px">
+    <h4>Sign Up</h4>
+  </div>
+  <div class="mb3">
+    <form action="/users/create" method="POST" >
+      <div class="mb3">   
+        <label for="empid" class="form-label">Employee ID</label>
+        <input type="text" class="form-control" id="employeeID" name="employeeID" placeholder="ABC001" minlength="6" required/>
+      </div>
+       
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="abc@email.com" name="email" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="Password" class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" id="confirmPassword" name="confirm_password" required />
+    </div>
+    <div class="mb-4 mt-3" style="display: flex; justify-content: center">
+      <button type="submit" class="btn btn-success btn-block mb-4">Sign Up</button>
+    </div>
+  </form>
+  <div class="mx-auto mb-3 mt-3" style="width: 300px">
+    <a href="/users/sign-in" style="margin-left: 100px">Log in Instead</a>
+  </div>
+  </div>
