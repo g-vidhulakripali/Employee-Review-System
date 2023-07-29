@@ -16,12 +16,17 @@
                    <%if(locals.user.isAdmin){%>
                     <a href="/admin"><%= user.name %> - ADMIN DASHBOARD</a>
                  <%  }else{%>
-                    <a href="/"><%= user.name %></a>
+                    <a href="/employee"><%= user.name %></a>
                   <% }%>
                    
                 </li>
                 <li>
-                    <a href="/admin/perfomace-review">Performance Review</a>
+                    <%if(locals.user.isAdmin){%>
+                        <a href="/admin/perfomace-review">Performance Review</a>
+                     <%  }else{%>
+                        <a href="/employee/perfomace-review">Performance Review</a>
+                      <% }%>
+                    
                 </li>
                 <li>
                     <a href="/users/sign-out">Sign Out</a>

@@ -80,5 +80,20 @@ passport.setAuthenticatedUser = function (req, res, next) {
   next();
 };
 
+passport.checkAdminAccess = function (req, res, next) {
+  // If the user is authenticated, call the next middleware.
+  if (req.isAuthenticated()) {
+    if (req.user.isAdmin) {
+      return next();
+    } else {
+      return res.status(401).render("401", {
+        title: "Employee Review System  | 401",
+      });
+    }
+  }
+  // If the user is not signed in, redirect to sign-in page.
+  return res.redirect("/users/sign-in");
+};
+
 // Exporting the passport configuration module.
 module.exports = passport;

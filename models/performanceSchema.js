@@ -26,7 +26,6 @@ const PerformaceSchema = new mongoose.Schema(
     reviewer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
     },
     feedback: {
       type: String,

@@ -11,6 +11,7 @@ router.get("/", passport.checkAuthentication, homeController.home);
 // Users routes
 router.use("/users", require("./users"));
 router.use("/admin", require("./admin"));
+router.use("/employee", require("./employee"));
 
 // 404 route - Page Not Found
 router.use((req, res) => {

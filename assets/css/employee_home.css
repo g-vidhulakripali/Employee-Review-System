@@ -1,0 +1,22 @@
+.container {
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #007bff; }
+
+table {
+  width: 100%; }
+
+th, td {
+  padding: 10px;
+  text-align: center; }
+
+.performance-list li {
+  list-style: none;
+  padding: 5px 0; }

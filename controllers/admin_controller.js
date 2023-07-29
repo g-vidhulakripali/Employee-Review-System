@@ -1,10 +1,11 @@
 const User = require("../models/userSchema");
+const Performance = require("../models/performanceSchema");
 
 module.exports.admin = async function (req, res) {
   try {
     const employees = await User.find({});
     return res.render("admin_home", {
-      title: "Employee Review System  | Admin Page",
+      title: "Employee Review System  | Admin Dashboard",
       employees: employees,
     });
   } catch (err) {
@@ -120,12 +121,31 @@ module.exports.deleteUser = async function (req, res) {
   //   console.log(req.params.id);
   //   console.log(req.body);
   const id = req.params.id;
+  const adminId = req.params.adminId;
   try {
-    await User.findByIdAndDelete(id);
+    const user = await User.findById(id);
+    // const perfomace = await Performance.find({ reviewer: id });
+    const admin = await User.findById(adminId);
+    if (!user) {
+      req.flash("error", "User not found");
+      return res.redirect("back");
+    }
+
+    // console.log(perfomace.id);
+    await Performance.deleteMany({ employee: user });
+
+    await Performance.updateMany(
+      { reviewer: id },
+      { $set: { reviewer: adminId } }
+    );
+
+    await User.deleteOne({ _id: id });
+
+    req.flash("success", "User deleted successfully");
+    return res.redirect("back");
   } catch (err) {
     req.flash("error", "Unable to delete");
     console.log("Error in deleting the User", err);
     return res.redirect("back");
   }
-  return res.redirect("back");
 };

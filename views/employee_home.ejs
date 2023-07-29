@@ -1,0 +1,93 @@
+<div class="w-75 mx-auto mt-5">
+  <br />
+
+  <div class="row">
+    <div class="col-6">
+      <h2>Performance Review Report</h2>
+    </div>
+  </div>
+  <% if(performaces.length> 0) {%>
+    <% for(let perfomance of performaces) {%>
+      <% if (JSON.stringify(locals.user._id)===JSON.stringify(perfomance.employee._id)) { %>
+        <div class="container">
+          <h1>Employee Performance Report</h1>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+                <th>Performance Review</th>
+                <th>Reviewer</th>
+                <th>FeedBack</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <%= perfomance.employee.employeeID%>
+                </td>
+                <td>
+                  <%= perfomance.employee.name%>
+                </td>
+                <td>
+                  <ul class="list-unstyled performance-list">
+                    <li>Job Knowledge: <%=perfomance.jobKnowledge%>
+                        <%for(let i=1;i<=perfomance.jobKnowledge;i++){%>
+                          <span style='font-size:3rem; color:#d2bf37;'>&#9733;</span>
+                          <% } %>
+
+                    </li>
+                    <li>Quality of Work: <%=perfomance.qualityOfWork%>
+                        <%for(let i=1;i<=perfomance.qualityOfWork;i++){%>
+                          <span style='font-size:3rem; color:#d2bf37;'>&#9733;</span>
+                          <% } %>
+
+                    </li>
+                    <li>Productivity: <%=perfomance.productivity%>
+                        <%for(let i=1;i<=perfomance.productivity;i++){%>
+                          <span style='font-size:3rem; color:#d2bf37;'>&#9733;</span>
+                          <% } %>
+
+                    </li>
+                    <li>Communication: <%=perfomance.communication%>
+                        <%for(let i=1;i<=perfomance.communication;i++){%>
+                          <span style='font-size:3rem; color:#d2bf37;'>&#9733;</span>
+                          <% } %>
+
+                    </li>
+                    <li>Problem Solving: <%=perfomance.problemSolving%>
+                        <%for(let i=1;i<=perfomance.problemSolving;i++){%>
+                          <span style='font-size:3rem; color:#d2bf37;'>&#9733;</span>
+                          <% } %>
+
+                    </li>
+                  </ul>
+
+                </td>
+                <td>
+                  <%= perfomance.reviewer.name%>
+                </td>
+                <td>
+                  <%= perfomance.feedback%>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-center mt-4">
+            <% const createdAtDate=new Date(perfomance.createdAt); %>
+
+              <!-- Displaying the date -->
+              <p style="color: black;">Created At: <%= createdAtDate.getDate() %>/<%= createdAtDate.getMonth() + 1 %>/<%=
+                      createdAtDate.getFullYear() %>
+              </p>
+
+          </div>
+        </div>
+        <%}%>
+          <%}%>
+            <%}else{%>
+              <div class="w-75 mx-auto mt-5">
+                <h2>No Records Found</h2>
+              </div>
+              <%}%>
+</div>
