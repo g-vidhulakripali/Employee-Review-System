@@ -1,5 +1,6 @@
 const Performance = require("../models/performanceSchema");
 
+// Controller function to render employee home page
 module.exports.employee = async function (req, res) {
   try {
     const performaces = await Performance.find({})
@@ -15,6 +16,7 @@ module.exports.employee = async function (req, res) {
   }
 };
 
+// Controller function to render the employee review page
 module.exports.employeeReview = async function (req, res) {
   try {
     const performaces = await Performance.find({})
@@ -30,8 +32,8 @@ module.exports.employeeReview = async function (req, res) {
   }
 };
 
+// Controller function to add feedback
 module.exports.addFeedback = async function (req, res) {
-  // console.log(req.body);
   try {
     await Performance.updateOne(
       { _id: req.params.id },

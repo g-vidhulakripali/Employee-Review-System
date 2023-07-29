@@ -1,6 +1,7 @@
 const User = require("../models/userSchema");
 const Performance = require("../models/performanceSchema");
 
+// Admin dashboard - Fetches all employees and renders the admin_home view.
 module.exports.admin = async function (req, res) {
   try {
     const employees = await User.find({});
@@ -14,12 +15,14 @@ module.exports.admin = async function (req, res) {
   }
 };
 
+// Render the form to add a new employee.
 module.exports.addEmployee = function (req, res) {
   return res.render("user_sign_up_employee", {
     title: "Employee Review System  | Add Employee",
   });
 };
 
+// Create a new employee.
 module.exports.createEmployee = async function (req, res) {
   if (req.body.password != req.body.confirm_password) {
     req.flash("error", "Password Doesn't Match");
@@ -30,7 +33,6 @@ module.exports.createEmployee = async function (req, res) {
   try {
     let user = await User.findOne({ email: req.body.email });
     let empID = await User.findOne({ employeeID: req.body.employeeID });
-    // console.log(req.body);
     if (!user) {
       try {
         if (!empID) {
@@ -61,6 +63,7 @@ module.exports.createEmployee = async function (req, res) {
   }
 };
 
+// Update employee details.
 module.exports.update = async function (req, res) {
   const id = req.params.id;
   // Access the employeeID from req.body using the name attribute with employee._id
@@ -89,8 +92,8 @@ module.exports.update = async function (req, res) {
   }
 };
 
+// Update user to admin role.
 module.exports.updateToAdmin = async function (req, res) {
-  console.log(req.params);
   const id = req.params.id;
   console.log("This is update to Admin");
   try {
@@ -103,12 +106,11 @@ module.exports.updateToAdmin = async function (req, res) {
     return res.redirect("back");
   }
 };
-
+// Update admin to user role.
 module.exports.updateToUser = async function (req, res) {
   const id = req.params.id;
   try {
     const emp = await User.updateOne({ _id: id }, { isAdmin: false });
-    // console.log(emp);
     return res.redirect("back");
   } catch (err) {
     req.flash("error", "Unable to make the admin as User");
@@ -117,9 +119,8 @@ module.exports.updateToUser = async function (req, res) {
   }
 };
 
+// Delete a user.
 module.exports.deleteUser = async function (req, res) {
-  //   console.log(req.params.id);
-  //   console.log(req.body);
   const id = req.params.id;
   const adminId = req.params.adminId;
   try {
@@ -131,7 +132,6 @@ module.exports.deleteUser = async function (req, res) {
       return res.redirect("back");
     }
 
-    // console.log(perfomace.id);
     await Performance.deleteMany({ employee: user });
 
     await Performance.updateMany(

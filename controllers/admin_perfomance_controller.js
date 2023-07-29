@@ -1,14 +1,13 @@
 const User = require("../models/userSchema");
 const Performance = require("../models/performanceSchema");
 
+// Controller function to render the performace page
 module.exports.performace = async function (req, res) {
   try {
     const employees = await User.find({});
     const performances = await Performance.find({})
       .populate("employee", "name employeeID")
       .populate("reviewer", "name");
-    // console.log("Here");
-    // console.log(performances);
     return res.render("admin_performance_review", {
       title: "Employee Review System  | Employee Performance Review",
       employees: employees,
@@ -20,6 +19,7 @@ module.exports.performace = async function (req, res) {
   }
 };
 
+// Controller function to render the addPerformance form page
 module.exports.addPerformance = async function (req, res) {
   try {
     const employees = await User.find({});
@@ -33,13 +33,9 @@ module.exports.addPerformance = async function (req, res) {
   }
 };
 
+// Controller function to create Performace
 module.exports.createPerformance = async function (req, res) {
-  console.log(req.params.id);
-  console.log(req.body);
-
   try {
-    // const employee = User.findById(req.body.employee);
-    // const reviewer = User.findById(req.params.id);
     Performance.create({
       employee: req.body.employee,
       jobKnowledge: req.body.jk,
@@ -57,10 +53,8 @@ module.exports.createPerformance = async function (req, res) {
   }
 };
 
+// Controller function to updade the employee performace
 module.exports.updateEmployeePerformance = async function (req, res) {
-  // console.log(req.params.id);
-  // console.log(req.body);
-
   const id = req.params.id;
   // // Access the employeeID from req.body using the name attribute with employee._id
   const jobKnowledge = req.body[`jk_${id}`];

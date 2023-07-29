@@ -4,6 +4,7 @@ const adminController = require("../controllers/admin_controller");
 const adminPerfomaceController = require("../controllers/admin_perfomance_controller");
 const passport = require("passport");
 
+// Admin Dashboard routes
 router.get("/", passport.checkAdminAccess, adminController.admin);
 router.get(
   "/add-employee",
@@ -32,6 +33,7 @@ router.get(
   adminController.deleteUser
 );
 
+// Performance Review routes
 router.get(
   "/perfomace-review",
   passport.checkAdminAccess,

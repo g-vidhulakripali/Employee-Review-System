@@ -12,7 +12,6 @@ module.exports.signUp = function (req, res) {
 
 // Controller function to render the sign-in form page
 module.exports.signIn = function (req, res) {
-  // console.log(req.body);
   console.log(req.body);
   if (req.isAuthenticated()) {
     return res.redirect("/");

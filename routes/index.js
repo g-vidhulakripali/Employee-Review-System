@@ -10,7 +10,9 @@ router.get("/", passport.checkAuthentication, homeController.home);
 
 // Users routes
 router.use("/users", require("./users"));
+//Admin routes
 router.use("/admin", require("./admin"));
+//Employee routes
 router.use("/employee", require("./employee"));
 
 // 404 route - Page Not Found

@@ -67,12 +67,10 @@ passport.checkAuthentication = function (req, res, next) {
 // Middleware to set authenticated user in res.locals.user for use in views.
 passport.setAuthenticatedUser = function (req, res, next) {
   if (req.isAuthenticated()) {
-    // console.log(req.user);
     res.locals.user = req.user;
 
     if (req.user.isAdmin) {
       res.locals.isAdmin = true;
-      console.log(res.locals.isAdmin);
     } else {
       res.locals.isAdmin = false;
     }
