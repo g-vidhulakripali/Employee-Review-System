@@ -59,7 +59,7 @@ app.use(
     store: MongoStore.create({
       // mongoUrl: "mongodb://127.0.0.1:27017/emp-review-db",
       mongoUrl:
-        "mongodb+srv://gvidhulakripali:Oey4aY6N1BI9N57K@cluster0.squt5dz.mongodb.net/placement-cell-db",
+        "mongodb+srv://gvidhulakripali:Oey4aY6N1BI9N57K@cluster0.squt5dz.mongodb.net/emp-review-db",
       autoRemove: "disabled",
     }),
   })
